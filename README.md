@@ -1,1 +1,1 @@
-# svelte-examples
+# svelte örnekleri
