@@ -2,14 +2,24 @@ import download from 'downloadjs';
 import { readAsArrayBuffer } from './asyncReader.js';
 import { fetchFont, getAsset } from './prepareAssets';
 import { noop } from './helper.js';
+import {
+  PDFDocument,
+  pushGraphicsState,
+  setLineCap,
+  popGraphicsState,
+  setLineJoin,
+  LineCapStyle,
+  LineJoinStyle
+} from 'pdf-lib';
 
 export async function save(pdfFile, objects, name) {
-  const PDFLib = await getAsset('PDFLib');
+  //const PDFLib = await getAsset('PDFLib');
   //const download = await getAsset('download');
   const makeTextPDF = await getAsset('makeTextPDF');
   let pdfDoc;
   try {
-    pdfDoc = await PDFLib.PDFDocument.load(await readAsArrayBuffer(pdfFile));
+    //pdfDoc = await PDFLib.PDFDocument.load(await readAsArrayBuffer(pdfFile));
+    pdfDoc = await PDFDocument.load(await readAsArrayBuffer(pdfFile));
   } catch (e) {
     console.log('Failed to load PDF.');
     throw e;
@@ -63,6 +73,7 @@ export async function save(pdfFile, objects, name) {
           });
       } else if (object.type === 'drawing') {
         let { x, y, path, scale } = object;
+        /*
         const {
           pushGraphicsState,
           setLineCap,
@@ -71,6 +82,7 @@ export async function save(pdfFile, objects, name) {
           LineCapStyle,
           LineJoinStyle,
         } = PDFLib;
+        */
         return () => {
           page.pushOperators(
             pushGraphicsState(),
