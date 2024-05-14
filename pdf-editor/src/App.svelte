@@ -99,9 +99,7 @@
 				payload: img,
 				file
 			};
-			allObjects = allObjects.map((objects, pIndex) =>
-				pIndex === selectedPageIndex ? [...objects, object] : objects
-			);
+			allObjects = allObjects.map((objects, pIndex) => (pIndex === selectedPageIndex ? [...objects, object] : objects));
 		} catch (e) {
 			console.log(`Fail to add image.`, e);
 		}
@@ -128,9 +126,7 @@
 			y: 0
 		};
 
-		allObjects = allObjects.map((objects, pIndex) =>
-			pIndex === selectedPageIndex ? [...objects, object] : objects
-		);
+		allObjects = allObjects.map((objects, pIndex) => (pIndex === selectedPageIndex ? [...objects, object] : objects));
 	}
 
 	function onAddDrawing() {
@@ -153,9 +149,7 @@
 			scale
 		};
 
-		allObjects = allObjects.map((objects, pIndex) =>
-			pIndex === selectedPageIndex ? [...objects, object] : objects
-		);
+		allObjects = allObjects.map((objects, pIndex) => (pIndex === selectedPageIndex ? [...objects, object] : objects));
 	}
 
 	function selectFontFamily(event) {
@@ -170,9 +164,7 @@
 
 	function updateObject(objectId, payload) {
 		allObjects = allObjects.map((objects, pIndex) =>
-			pIndex == selectedPageIndex
-				? objects.map((object) => (object.id === objectId ? { ...object, ...payload } : object))
-				: objects
+			pIndex == selectedPageIndex ? objects.map((object) => (object.id === objectId ? { ...object, ...payload } : object)) : objects
 		);
 	}
 
@@ -201,11 +193,7 @@
 	}
 </script>
 
-<svelte:window
-	on:dragenter|preventDefault
-	on:dragover|preventDefault
-	on:drop|preventDefault={onUploadPDF}
-/>
+<svelte:window on:dragenter|preventDefault on:dragover|preventDefault on:drop|preventDefault={onUploadPDF} />
 
 <main class="flex flex-col items-center py-16 bg-gray-100 min-h-screen">
 	<div
@@ -257,12 +245,7 @@
 		</div>
 		<div class="justify-center mr-3 md:mr-4 w-full max-w-xs hidden md:flex">
 			<img src="edit.svg" class="mr-2" alt="a pen, edit pdf name" />
-			<input
-				placeholder="Dosyayı yeniden adlandırın"
-				type="text"
-				class="flex-grow bg-transparent"
-				bind:value={pdfName}
-			/>
+			<input placeholder="Dosyayı yeniden adlandırın" type="text" class="flex-grow bg-transparent" bind:value={pdfName} />
 		</div>
 		<button
 			on:click={savePDF}
@@ -301,12 +284,7 @@
 	{#if pages.length}
 		<div class="flex justify-center px-5 w-full md:hidden">
 			<img src="edit.svg" class="mr-2" alt="a pen, edit pdf name" />
-			<input
-				placeholder="PDF dosyasını yeniden adlandırın"
-				type="text"
-				class="flex-grow bg-transparent"
-				bind:value={pdfName}
-			/>
+			<input placeholder="PDF dosyasını yeniden adlandırın" type="text" class="flex-grow bg-transparent" bind:value={pdfName} />
 		</div>
 		<div class="w-full">
 			{#each pages as page, pIndex (page)}

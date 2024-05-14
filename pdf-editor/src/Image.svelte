@@ -199,8 +199,14 @@
 		<div data-direction="top" class="resize-border w-full h-1 left-0 top-0 border-t cursor-ns-resize" />
 		<div data-direction="bottom" class="resize-border w-full h-1 left-0 bottom-0 border-b cursor-ns-resize" />
 		<div data-direction="right" class="resize-border h-full w-1 right-0 top-0 border-r cursor-ew-resize" />
-		<div data-direction="left-top" class="resize-corner left-0 top-0 cursor-nwse-resize transform -translate-x-1/2 -translate-y-1/2 md:scale-25" />
-		<div data-direction="right-top" class="resize-corner right-0 top-0 cursor-nesw-resize transform translate-x-1/2 -translate-y-1/2 md:scale-25" />
+		<div
+			data-direction="left-top"
+			class="resize-corner left-0 top-0 cursor-nwse-resize transform -translate-x-1/2 -translate-y-1/2 md:scale-25"
+		/>
+		<div
+			data-direction="right-top"
+			class="resize-corner right-0 top-0 cursor-nesw-resize transform translate-x-1/2 -translate-y-1/2 md:scale-25"
+		/>
 		<div
 			data-direction="left-bottom"
 			class="resize-corner left-0 bottom-0 cursor-nesw-resize transform -translate-x-1/2 translate-y-1/2 md:scale-25"

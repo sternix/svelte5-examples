@@ -5,15 +5,15 @@ import { svelte } from '@sveltejs/vite-plugin-svelte';
 export default defineConfig({
 	base: '', // relative path için
 	build: {
-		target: "es2022", // await import için
-		chunkSizeWarningLimit: 5000, // dosya boyut uyarı vermemesi için
+		target: 'es2022', // await import için
+		chunkSizeWarningLimit: 5000 // dosya boyut uyarı vermemesi için
 	},
 	esbuild: {
-		target: "es2022"
+		target: 'es2022'
 	},
 	optimizeDeps: {
 		esbuildOptions: {
-			target: "es2022",
+			target: 'es2022'
 		}
 	},
 	plugins: [svelte()]
