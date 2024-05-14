@@ -179,15 +179,15 @@
 			class="h-full flex justify-center items-center bg-gray-300 border-b border-gray-400"
 		>
 			<div class="mr-2 flex items-center">
-				<img src="/line_height.svg" class="w-6 mr-2" alt="Line height" />
+				<img src="line_height.svg" class="w-6 mr-2" alt="Line height" />
 				<input type="number" min="1" max="10" step="0.1" class="h-6 w-12 text-center flex-shrink-0 rounded-sm" bind:value={_lineHeight} />
 			</div>
 			<div class="mr-2 flex items-center">
-				<img src="/text.svg" class="w-6 mr-2" alt="Font size" />
+				<img src="text.svg" class="w-6 mr-2" alt="Font size" />
 				<input type="number" min="12" max="120" step="1" class="h-6 w-12 text-center flex-shrink-0 rounded-sm" bind:value={_size} />
 			</div>
 			<div class="mr-2 flex items-center">
-				<img src="/text-family.svg" class="w-4 mr-2" alt="Font family" />
+				<img src="text-family.svg" class="w-4 mr-2" alt="Font family" />
 				<div class="relative w-32 md:w-40">
 					<select bind:value={_fontFamily} on:change={onChangeFont} class="font-family">
 						{#each Families as family}
@@ -202,7 +202,7 @@
 				</div>
 			</div>
 			<button on:click={onDelete} class="w-5 h-5 rounded-full bg-white cursor-pointer">
-				<img class="w-full h-full" src="/delete.svg" alt="delete object" />
+				<img class="w-full h-full" src="delete.svg" alt="Sil" />
 			</button>
 		</div>
 	</Toolbar>

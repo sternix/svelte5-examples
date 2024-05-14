@@ -11,7 +11,7 @@ const scripts = [
     name: 'download',
     src: 'https://unpkg.com/downloadjs@1.4.7',
   },
-  { name: 'makeTextPDF', src: '/makeTextPDF.js' },
+  { name: 'makeTextPDF', src: 'makeTextPDF.js' },
 ];
 
 const assets = {};
@@ -67,20 +67,20 @@ export const Fonts = {
   ...fonts,
 
   'Roboto': {
-    src: '/fonts/Roboto-Regular.ttf',
+    src: 'fonts/Roboto-Regular.ttf',
     correction(size, lineHeight) {
       return (size * lineHeight - size) / 2 + size / 7;
     },
   },
   'Noto Sans CJK': {
-    src: '/fonts/NotoSansSC-Regular.ttf',
+    src: 'fonts/NotoSansSC-Regular.ttf',
     correction(size, lineHeight) {
       return (size * lineHeight - size) / 2 + size / 7;
     },
   },
   'Çince': {
     //標楷體: {
-    src: '/fonts/CK.ttf', // 9.9 MB
+    src: 'fonts/CK.ttf', // 9.9 MB
     correction(size, lineHeight) {
       return (size * lineHeight - size) / 2;
     },

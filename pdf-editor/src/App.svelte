@@ -27,7 +27,7 @@
 	// for test purpose
 	onMount(async () => {
 		try {
-			const res = await fetch('/test.pdf');
+			const res = await fetch('test.pdf');
 			const pdfBlob = await res.blob();
 			await addPDF(pdfBlob);
 			selectedPageIndex = 0;
@@ -43,6 +43,7 @@
 			console.log(e);
 		}
 	});
+
 	async function onUploadPDF(e) {
 		const files = e.target.files || (e.dataTransfer && e.dataTransfer.files);
 		const file = files[0];
@@ -227,11 +228,11 @@
 			<label
 				class="flex items-center justify-center h-full w-8 hover:bg-gray-500
         cursor-pointer"
-				for="img_add"
+				for="image"
 				class:cursor-not-allowed={selectedPageIndex < 0}
 				class:bg-gray-500={selectedPageIndex < 0}
 			>
-				<img src="image.svg" id="img_add"  alt="An icon for adding images" />
+				<img src="image.svg" alt="Resim ekle" />
 			</label>
 			<button
 				class="flex items-center justify-center h-full w-8 hover:bg-gray-500
@@ -241,7 +242,7 @@
 				class:bg-gray-500={selectedPageIndex < 0}
 				on:click={onAddTextField}
 			>
-				<img src="notes.svg" alt="An icon for adding text" />
+				<img src="notes.svg" alt="Metin ekle" />
 			</button>
 			<button
 				title="Yeni bir çizim ekleyin"
@@ -251,11 +252,11 @@
 				class:cursor-not-allowed={selectedPageIndex < 0}
 				class:bg-gray-500={selectedPageIndex < 0}
 			>
-				<img src="gesture.svg" alt="An icon for adding drawing" />
+				<img src="gesture.svg" alt="Çizim ekle" />
 			</button>
 		</div>
 		<div class="justify-center mr-3 md:mr-4 w-full max-w-xs hidden md:flex">
-			<img src="/edit.svg" class="mr-2" alt="a pen, edit pdf name" />
+			<img src="edit.svg" class="mr-2" alt="a pen, edit pdf name" />
 			<input
 				placeholder="Dosyayı yeniden adlandırın"
 				type="text"
@@ -273,7 +274,7 @@
 			{saving ? 'Kaydediliyor' : 'Kaydet'}
 		</button>
 		<a href="https://github.com/sternix/svelte-examples" target="_blank">
-			<img src="/GitHub-Mark-32px.png" alt="GitHub icon" />
+			<img src="GitHub-Mark-32px.png" alt="GitHub icon" />
 		</a>
 	</div>
 	{#if addingDrawing}
@@ -299,7 +300,7 @@
 	{/if}
 	{#if pages.length}
 		<div class="flex justify-center px-5 w-full md:hidden">
-			<img src="/edit.svg" class="mr-2" alt="a pen, edit pdf name" />
+			<img src="edit.svg" class="mr-2" alt="a pen, edit pdf name" />
 			<input
 				placeholder="PDF dosyasını yeniden adlandırın"
 				type="text"

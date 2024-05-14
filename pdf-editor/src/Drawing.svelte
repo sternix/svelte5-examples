@@ -118,7 +118,7 @@
 		class="absolute left-0 top-0 right-0 w-12 h-12 m-auto rounded-full bg-white
     cursor-pointer transform -translate-y-1/2 md:scale-25"
 	>
-		<img class="w-full h-full" src="/delete.svg" alt="delete object" />
+		<img class="w-full h-full" src="delete.svg" alt="Sil" />
 	</button>
 	<svg bind:this={svg} width="100%" height="100%">
 		<path stroke-width="5" stroke-linejoin="round" stroke-linecap="round" stroke="black" fill="none" d={path} />
