@@ -1,8 +1,10 @@
 const scripts = [
+  /*
   {
     name: 'pdfjsLib',
     src: 'https://unpkg.com/pdfjs-dist@2.3.200/build/pdf.min.js',
   },
+  */
   /*
   {
     name: 'PDFLib',

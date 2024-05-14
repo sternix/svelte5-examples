@@ -1,8 +1,8 @@
 import './app.css'
 import App from './App.svelte';
-import { getAsset } from './utils/prepareAssets.js';
+//import { getAsset } from './utils/prepareAssets.js';
 
-getAsset('pdfjsLib');
+//getAsset('pdfjsLib');
 const app = new App({
   target: document.body,
 });
