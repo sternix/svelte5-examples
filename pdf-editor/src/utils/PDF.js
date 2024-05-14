@@ -1,10 +1,11 @@
+import download from 'downloadjs';
 import { readAsArrayBuffer } from './asyncReader.js';
 import { fetchFont, getAsset } from './prepareAssets';
 import { noop } from './helper.js';
 
 export async function save(pdfFile, objects, name) {
   const PDFLib = await getAsset('PDFLib');
-  const download = await getAsset('download');
+  //const download = await getAsset('download');
   const makeTextPDF = await getAsset('makeTextPDF');
   let pdfDoc;
   try {

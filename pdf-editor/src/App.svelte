@@ -213,7 +213,6 @@
     bg-gray-200 border-b border-gray-300"
 	>
 		<input type="file" name="pdf" id="pdf" on:change={onUploadPDF} class="hidden" />
-		<input type="file" id="image" name="image" class="hidden" on:change={onUploadImage} />
 		<label
 			class="whitespace-no-wrap bg-blue-500 hover:bg-blue-700 text-white
       font-bold py-1 px-3 md:px-4 rounded mr-3 cursor-pointer md:mr-4"
@@ -225,6 +224,7 @@
 			class="relative mr-3 flex h-8 bg-gray-400 rounded-sm overflow-hidden
       md:mr-4"
 		>
+			<input type="file" id="image" name="image" class="hidden" on:change={onUploadImage} />
 			<label
 				class="flex items-center justify-center h-full w-8 hover:bg-gray-500
         cursor-pointer"
@@ -232,12 +232,12 @@
 				class:cursor-not-allowed={selectedPageIndex < 0}
 				class:bg-gray-500={selectedPageIndex < 0}
 			>
-				<img src="image.svg" alt="Resim ekle" />
+				<img src="image.svg" alt="Resim ekle" title="Resim ekle" />
 			</label>
 			<button
 				class="flex items-center justify-center h-full w-8 hover:bg-gray-500
         cursor-pointer"
-				title="Yeni bir metin ekleyin"
+				title="Metin ekle"
 				class:cursor-not-allowed={selectedPageIndex < 0}
 				class:bg-gray-500={selectedPageIndex < 0}
 				on:click={onAddTextField}
@@ -245,7 +245,7 @@
 				<img src="notes.svg" alt="Metin ekle" />
 			</button>
 			<button
-				title="Yeni bir çizim ekleyin"
+				title="Çizim ekle"
 				class="flex items-center justify-center h-full w-8 hover:bg-gray-500
         cursor-pointer"
 				on:click={onAddDrawing}
