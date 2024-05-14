@@ -227,11 +227,11 @@
 			<label
 				class="flex items-center justify-center h-full w-8 hover:bg-gray-500
         cursor-pointer"
-				for="image"
+				for="img_add"
 				class:cursor-not-allowed={selectedPageIndex < 0}
 				class:bg-gray-500={selectedPageIndex < 0}
 			>
-				<img src="image.svg" alt="An icon for adding images" />
+				<img src="image.svg" id="img_add"  alt="An icon for adding images" />
 			</label>
 			<button
 				class="flex items-center justify-center h-full w-8 hover:bg-gray-500
@@ -272,8 +272,8 @@
 		>
 			{saving ? 'Kaydediliyor' : 'Kaydet'}
 		</button>
-		<a href="https://github.com/sternix/svelte-examples">
-			<img src="/GitHub-Mark-32px.png" alt="A GitHub icon leads to personal GitHub page" />
+		<a href="https://github.com/sternix/svelte-examples" target="_blank">
+			<img src="/GitHub-Mark-32px.png" alt="GitHub icon" />
 		</a>
 	</div>
 	{#if addingDrawing}
@@ -301,7 +301,7 @@
 		<div class="flex justify-center px-5 w-full md:hidden">
 			<img src="/edit.svg" class="mr-2" alt="a pen, edit pdf name" />
 			<input
-				placeholder="PDF dosyaınızı yeniden adlandırın"
+				placeholder="PDF dosyasını yeniden adlandırın"
 				type="text"
 				class="flex-grow bg-transparent"
 				bind:value={pdfName}
@@ -310,6 +310,8 @@
 		<div class="w-full">
 			{#each pages as page, pIndex (page)}
 				<div
+					role="button"
+					tabindex="-10"
 					class="p-5 w-full flex flex-col items-center overflow-hidden"
 					on:mousedown={() => selectPage(pIndex)}
 					on:touchstart={() => selectPage(pIndex)}
