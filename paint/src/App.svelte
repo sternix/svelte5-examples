@@ -1,23 +1,23 @@
 <script>
 	import Menu from "./Menu.svelte";
 	import { extractOffSetFromEvent } from "./utils";
-	import { LineOpacity, useState } from "./states.svelte";
 
 	let canvas;
 	let ctx;
 	let isDrawing = $state(false);
 	const scalingFactor = 1;
-	const lineWidth = useState(5);
-	const lineColor = useState("#000000");
-	const lineOpacity = LineOpacity(50);
+	let lineWidth = $state(5);
+	let lineColor = $state("#000000");
+	let lineOpacity = $state(50);
+	let opacity = $derived(lineOpacity / 100);
 
 	$effect(() => {
 		ctx = canvas.getContext("2d");
 		ctx.lineCap = "round";
 		ctx.lineJoin = "round";
-		ctx.globalAlpha = lineOpacity.opacity;
-		ctx.strokeStyle = lineColor.value;
-		ctx.lineWidth = lineWidth.value;
+		ctx.globalAlpha = opacity;
+		ctx.strokeStyle = lineColor;
+		ctx.lineWidth = lineWidth;
 	});
 
 	function startDrawing(e) {
@@ -56,7 +56,12 @@
 <div class="App">
 	<h1>Svelte Paint App</h1>
 	<div class="draw-area">
-		<Menu {lineColor} {lineWidth} {lineOpacity} />
+		<!--
+			buradaki color ve width component'teki $bindable değerler
+			eğer iki tarafta aynı değer varsa lineOpacity gibi yazabiliriz
+			bu şekilde childdaki bir değişiklik yukarıya iletilebiliyor
+		 -->
+		<Menu bind:color={lineColor} bind:width={lineWidth} bind:lineOpacity />
 		<canvas
 			bind:this={canvas}
 			onmousedown={startDrawing}
