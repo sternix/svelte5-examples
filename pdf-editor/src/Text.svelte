@@ -169,9 +169,8 @@
 
 {#if operation}
 	<Toolbar>
+		<!-- svelte-ignore a11y-no-static-element-interactions -->
 		<div
-			role="button"
-			tabindex="-2"
 			use:tapout
 			on:tapout={onBlurTool}
 			on:mousedown={onFocusTool}
@@ -219,9 +218,8 @@
 		class:cursor-grabbing={operation === 'move'}
 		class:editing={['edit', 'tool'].includes(operation)}
 	/>
+	<!-- svelte-ignore a11y-no-static-element-interactions -->
 	<div
-		role="button"
-		tabindex="-11"
 		bind:this={editable}
 		on:focus={onFocus}
 		on:keydown={onKeydown}

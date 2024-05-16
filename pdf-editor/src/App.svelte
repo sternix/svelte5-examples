@@ -256,9 +256,11 @@
 		>
 			{saving ? 'Kaydediliyor' : 'Kaydet'}
 		</button>
+		<!--
 		<a href="https://github.com/sternix/svelte-examples" target="_blank">
 			<img src="GitHub-Mark-32px.png" alt="GitHub icon" />
 		</a>
+		-->
 	</div>
 	{#if addingDrawing}
 		<div
@@ -288,9 +290,8 @@
 		</div>
 		<div class="w-full">
 			{#each pages as page, pIndex (page)}
+				<!-- svelte-ignore a11y-no-static-element-interactions -->
 				<div
-					role="button"
-					tabindex="-10"
 					class="p-5 w-full flex flex-col items-center overflow-hidden"
 					on:mousedown={() => selectPage(pIndex)}
 					on:touchstart={() => selectPage(pIndex)}
