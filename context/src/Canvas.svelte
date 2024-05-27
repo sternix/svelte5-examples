@@ -3,7 +3,7 @@
 
 	let { width = 100, height = 100, children } = $props();
 
-	let canvas, ctx;
+	let canvas = $state(), ctx;
 	let items = new Set();
 	let scheduled = false;
 
@@ -20,27 +20,26 @@
 		});
 
 		$effect(() => {
-			if (scheduled) return;
-
-			scheduled = true;
-
 			(async () => {
+				if (scheduled) return;
+				scheduled = true;
+				// burası olmazsa
+				// Cannot read properties of undefined (reading 'clearRect')
 				await tick();
-			})
-
-			scheduled = false;
-			draw();
+				scheduled = false;
+				draw();
+			})()
 		});
 	}
 
 	function draw() {
 		ctx.clearRect(0, 0, width, height);
-		items.forEach((fn) => fn(ctx));
+		items.forEach(fn => fn(ctx));
 	}
 </script>
 
 <canvas bind:this={canvas} {width} {height}>
-	{@render children() }
+	{@render children?.()}
 </canvas>
 
 <style>
