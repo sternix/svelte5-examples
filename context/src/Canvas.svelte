@@ -1,5 +1,5 @@
 <script>
-	import { setContext, tick } from "svelte";
+	import { flushSync, setContext, tick } from "svelte";
 
 	let { width = 100, height = 100, children } = $props();
 
@@ -20,15 +20,16 @@
 		});
 
 		$effect(() => {
-			(async () => {
-				if (scheduled) return;
+				if (scheduled)
+					return;
 				scheduled = true;
 				// burası olmazsa
 				// Cannot read properties of undefined (reading 'clearRect')
-				await tick();
-				scheduled = false;
-				draw();
-			})()
+				// hatası veriyor
+				tick().then(() => {
+					draw();
+					scheduled = false;
+				})
 		});
 	}
 
