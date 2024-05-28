@@ -1,1 +1,1 @@
-# svelte örnekleri
+# svelte5 örnekleri
