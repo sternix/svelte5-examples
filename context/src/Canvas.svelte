@@ -1,5 +1,5 @@
 <script>
-	import { flushSync, setContext, tick } from "svelte";
+	import { setContext, tick } from "svelte";
 
 	let { width = 100, height = 100, children } = $props();
 
