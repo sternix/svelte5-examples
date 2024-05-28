@@ -3,7 +3,7 @@
 
 	let { width = 100, height = 100, children } = $props();
 
-	let canvas = $state(), ctx;
+	let canvas, ctx;
 	let items = new Set();
 	let scheduled = false;
 
