@@ -9,12 +9,12 @@
 	let { size, text, lineHeight, x, y, fontFamily, pageScale = 1, onupdate, onselectFont, ondelete } = $props();
 
 	const Families = Object.keys(Fonts);
-	let startX = $state();
-	let startY = $state();
-	let editable = $state();
-	let _size = size;
-	let _lineHeight = lineHeight;
-	let _fontFamily = fontFamily;
+	let startX;
+	let startY;
+	let editable;
+	let _size = $state(size);
+	let _lineHeight = $state(lineHeight);
+	let _fontFamily = $state(fontFamily);
 	let dx = $state(0);
 	let dy = $state(0);
 	let operation = $state('');
@@ -106,7 +106,6 @@
 	}
 
 	async function onBlurTool() {
-		//if (operation !== 'tool' || operation === 'edit') return;
 		if (operation !== 'tool') return;
 		onupdate({
 			lines: extractLines(),
@@ -161,7 +160,7 @@
 
 {#if operation}
 	<Toolbar>
-		<!-- svelte-ignore a11y-no-static-element-interactions -->
+		<!-- svelte-ignore a11y_no_static_element_interactions -->
 		<div
 			use:tapout
 			ontapout={onBlurTool}
@@ -209,8 +208,8 @@
 		class:cursor-grab={!operation}
 		class:cursor-grabbing={operation === 'move'}
 		class:editing={['edit', 'tool'].includes(operation)}
-	/>
-	<!-- svelte-ignore a11y-no-static-element-interactions -->
+	></div>
+	<!-- svelte-ignore a11y_no_static_element_interactions -->
 	<div
 		bind:this={editable}
 		onfocus={onFocus}
@@ -220,7 +219,7 @@
 		spellcheck="false"
 		class="outline-none whitespace-no-wrap"
 		style="font-size: {_size}px; font-family: '{_fontFamily}', serif; line-height: {_lineHeight}; -webkit-user-select: text;"
-	/>
+	></div>
 </div>
 
 <style>

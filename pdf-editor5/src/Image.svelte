@@ -1,11 +1,9 @@
 <script>
-	//	import { onMount, createEventDispatcher } from 'svelte';
+	import { onMount } from 'svelte';
 	import { pannable } from './utils/pannable.js';
-	//	import { readAsArrayBuffer } from './utils/asyncReader.js';
 
 	let { payload, file, width, height, x, y, pageScale = 1, onupdate, ondelete } = $props();
 
-	//const dispatch = createEventDispatcher();
 	let startX;
 	let startY;
 	let canvas;
@@ -44,8 +42,8 @@
 	}
 
 	function handlePanMove(event) {
-		const _dx = (event.x - startX) / pageScale;
-		const _dy = (event.y - startY) / pageScale;
+		const _dx = (event.detail.x - startX) / pageScale;
+		const _dy = (event.detail.y - startY) / pageScale;
 		if (operation === 'move') {
 			dx = _dx;
 			dy = _dy;
@@ -140,25 +138,21 @@
 	}
 
 	function handlePanStart(event) {
-		startX = event.x;
-		startY = event.y;
-		if (event.target === event.currentTarget) {
+		startX = event.detail.x;
+		startY = event.detail.y;
+		if (event.detail.target === event.currentTarget) {
 			return (operation = 'move');
 		}
 		operation = 'scale';
-		direction = event.target.dataset.direction;
+		direction = event.detail.target.dataset.direction;
 	}
 
 	function onDelete() {
 		ondelete();
 	}
 
-	//onMount(render);
-	$effect(() => {
-		render();
-	});
+	onMount(render);
 
-	//onMount(() => {
 	$effect(() => {
 		function isShiftKey(key) {
 			return key === 'Shift';
@@ -193,28 +187,26 @@
 		class:cursor-grabbing={operation === 'move'}
 		class:operation
 	>
-		<div data-direction="left" class="resize-border h-full w-1 left-0 top-0 border-l cursor-ew-resize" />
-		<div data-direction="top" class="resize-border w-full h-1 left-0 top-0 border-t cursor-ns-resize" />
-		<div data-direction="bottom" class="resize-border w-full h-1 left-0 bottom-0 border-b cursor-ns-resize" />
-		<div data-direction="right" class="resize-border h-full w-1 right-0 top-0 border-r cursor-ew-resize" />
+		<div data-direction="left" class="resize-border h-full w-1 left-0 top-0 border-l cursor-ew-resize"></div>
+		<div data-direction="top" class="resize-border w-full h-1 left-0 top-0 border-t cursor-ns-resize"></div>
+		<div data-direction="bottom" class="resize-border w-full h-1 left-0 bottom-0 border-b cursor-ns-resize"></div>
+		<div data-direction="right" class="resize-border h-full w-1 right-0 top-0 border-r cursor-ew-resize"></div>
 		<div
 			data-direction="left-top"
 			class="resize-corner left-0 top-0 cursor-nwse-resize transform -translate-x-1/2 -translate-y-1/2 md:scale-25"
-		/>
-		<!-- svelte-ignore element_invalid_self_closing_tag -->
+		></div>
 		<div
 			data-direction="right-top"
 			class="resize-corner right-0 top-0 cursor-nesw-resize transform translate-x-1/2 -translate-y-1/2 md:scale-25"
-		/>
+		></div>
 		<div
 			data-direction="left-bottom"
 			class="resize-corner left-0 bottom-0 cursor-nesw-resize transform -translate-x-1/2 translate-y-1/2 md:scale-25"
-		/>
-		<!-- svelte-ignore element_invalid_self_closing_tag -->
+		></div>
 		<div
 			data-direction="right-bottom"
 			class="resize-corner right-0 bottom-0 cursor-nwse-resize transform translate-x-1/2 translate-y-1/2 md:scale-25"
-		/>
+		></div>
 	</div>
 	<button
 		onclick={onDelete}
@@ -222,7 +214,7 @@
 	>
 		<img class="w-full h-full" src="delete.svg" alt="Sil" />
 	</button>
-	<canvas class="w-full h-full" bind:this={canvas} />
+	<canvas class="w-full h-full" bind:this={canvas}></canvas>
 </div>
 
 <style>

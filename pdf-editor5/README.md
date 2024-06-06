@@ -7,3 +7,5 @@ projesinin Svelte 5 ile yazma çalışması
 projesinden bazı fikirleri alıyorum
 
 ilk önce Svelte 4 ve vite ile çalışabilir hale getirdim,
+şimdi Svelte 5 ile çalışıyor
+

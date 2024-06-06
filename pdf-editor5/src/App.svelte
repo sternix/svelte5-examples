@@ -1,6 +1,6 @@
 <script>
-	//import { onMount } from 'svelte';
-	import { fly, scale } from 'svelte/transition';
+	import { onMount } from 'svelte';
+	import { fly } from 'svelte/transition';
 	import PDFPage from './PDFPage.svelte';
 	import Image from './Image.svelte';
 	import Text from './Text.svelte';
@@ -19,32 +19,28 @@
 	let pagesScale = $state([]);
 	let allObjects = $state([]);
 	let currentFont = 'Times-Roman';
-	//let focusId = null;
 	let selectedPageIndex = $state(-1);
 	let saving = $state(false);
 	let addingDrawing = $state(false);
 
 	// for test purpose
-	//onMount(async () => {
-	$effect(() => {
-		(async () => {
-			try {
-				const res = await fetch('test.pdf');
-				const pdfBlob = await res.blob();
-				await addPDF(pdfBlob);
-				selectedPageIndex = 0;
-				setTimeout(() => {
-					fetchFont(currentFont);
-					prepareAssets();
-				}, 5000);
-				// const imgBlob = await (await fetch("/test.jpg")).blob();
-				// addImage(imgBlob);
-				// addTextField("測試!");
-				// addDrawing(200, 100, "M30,30 L100,50 L50,70", 0.5);
-			} catch (e) {
-				console.log(e);
-			}
-		})();
+	onMount(async () => {
+		try {
+			const res = await fetch('test.pdf');
+			const pdfBlob = await res.blob();
+			await addPDF(pdfBlob);
+			selectedPageIndex = 0;
+			setTimeout(() => {
+				fetchFont(currentFont);
+				prepareAssets();
+			}, 5000);
+			// const imgBlob = await (await fetch("/test.jpg")).blob();
+			// addImage(imgBlob);
+			// addTextField("測試!");
+			// addDrawing(200, 100, "M30,30 L100,50 L50,70", 0.5);
+		} catch (e) {
+			console.log(e);
+		}
 	});
 
 	async function onUploadPDF(e) {
@@ -279,7 +275,6 @@
 		>
 			<DrawingCanvas
 				onfinish={(e) => {
-					console.log('DENEME',e);
 					const { originWidth, originHeight, path } = e;
 					let scale = 1;
 					if (originWidth > 500) {
@@ -299,14 +294,14 @@
 		</div>
 		<div class="w-full">
 			{#each pages as page, pIndex (page)}
-				<!-- svelte-ignore a11y-no-static-element-interactions -->
+				<!-- svelte-ignore a11y_no_static_element_interactions -->
 				<div
 					class="p-5 w-full flex flex-col items-center overflow-hidden"
 					onmousedown={() => selectPage(pIndex)}
 					ontouchstart={() => selectPage(pIndex)}
 				>
 					<div class="relative shadow-lg" class:shadow-outline={pIndex === selectedPageIndex}>
-						<PDFPage onmeasure={(e) => onMeasure(scale,pIndex)} {page} />
+						<PDFPage onmeasure={(e) => onMeasure(e.scale, pIndex)} {page} />
 						<div
 							class="absolute top-0 left-0 transform origin-top-left"
 							style="transform: scale({pagesScale[pIndex]}); touch-action: none;"

@@ -1,23 +1,20 @@
 <script>
-//	import { createEventDispatcher } from 'svelte';
 	import { pannable } from './utils/pannable.js';
 
-	let {onfinish, oncancel} = $props();
+	let { onfinish, oncancel } = $props();
 
-//	const dispatch = createEventDispatcher();
 	let canvas;
-	let x = $state(0);
-	let y = $state(0);
+	let x = 0;
+	let y = 0;
 	let path = $state('');
-	let minX = $state(Infinity);
-	let maxX = $state(0);
-	let minY = $state(Infinity);
-	let maxY = $state(0);
-	let paths = $state([]);
-	let drawing = $state(false);
+	let minX = Infinity;
+	let maxX = 0;
+	let minY = Infinity;
+	let maxY = 0;
+	let paths = [];
+	let drawing = false;
 
 	function handlePanStart(event) {
-		console.log(event);
 		if (event.detail.target !== canvas) {
 			return (drawing = false);
 		}
@@ -34,7 +31,6 @@
 	}
 
 	function handlePanMove(event) {
-		//console.log('handlePanMove', event);
 		if (!drawing) return;
 		x = event.detail.x;
 		y = event.detail.y;
@@ -51,7 +47,6 @@
 	}
 
 	function finish() {
-		console.log('xxx');
 		if (!paths.length) return;
 		const dx = -(minX - 10);
 		const dy = -(minY - 10);
@@ -63,7 +58,7 @@
 			originHeight: height,
 			path: paths.reduce((acc, cur) => {
 				return acc + cur[0] + (cur[1] + dx) + ',' + (cur[2] + dy);
-			},'')
+			}, '')
 		});
 	}
 

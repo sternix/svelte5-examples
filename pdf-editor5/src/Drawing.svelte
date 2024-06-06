@@ -1,13 +1,12 @@
 <script>
-	//import { onMount, createEventDispatcher } from 'svelte';
+	import { onMount } from 'svelte';
 	import { pannable } from './utils/pannable.js';
-	//	import { readAsArrayBuffer } from './utils/asyncReader.js';
 
 	let { originWidth, originHeight, width, x, y, pageScale = 1, path, onupdate, ondelete } = $props();
 
-	let startX = $state();
-	let startY = $state();
-	let svg = $state();
+	let startX;
+	let startY;
+	let svg;
 	let operation = $state('');
 	let dx = $state(0);
 	let dy = $state(0);
@@ -21,10 +20,8 @@
 	}
 
 	function handlePanMove(event) {
-		console.log('handlePanMove', event);
 		const _dx = (event.detail.x - startX) / pageScale;
 		const _dy = (event.detail.y - startY) / pageScale;
-		console.log('handlePanMove',operation);
 		if (operation === 'move') {
 			dx = _dx;
 			dy = _dy;
@@ -45,7 +42,6 @@
 	}
 
 	function handlePanEnd(event) {
-		console.log('handlePanEnd', event);
 		if (operation === 'move') {
 			onupdate({
 				x: x + dx,
@@ -69,7 +65,6 @@
 	}
 
 	function handlePanStart(event) {
-		console.log('handlePanStart',event);
 		startX = event.detail.x;
 		startY = event.detail.y;
 		if (event.detail.target === event.currentTarget) {
@@ -83,10 +78,7 @@
 		ondelete();
 	}
 
-	//onMount(render);
-	$effect(() => {
-		render();
-	});
+	onMount(render);
 </script>
 
 <div
@@ -106,12 +98,12 @@
 			data-direction="left-top"
 			class="absolute left-0 top-0 w-10 h-10 bg-green-400 rounded-full
       cursor-nwse-resize transform -translate-x-1/2 -translate-y-1/2 md:scale-25"
-		/>
+		></div>
 		<div
 			data-direction="right-bottom"
 			class="absolute right-0 bottom-0 w-10 h-10 bg-green-400 rounded-full
       cursor-nwse-resize transform translate-x-1/2 translate-y-1/2 md:scale-25"
-		/>
+		></div>
 	</div>
 	<button
 		onclick={onDelete}

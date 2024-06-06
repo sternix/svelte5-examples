@@ -1,15 +1,11 @@
 <script>
-//	import { onMount, onDestroy, createEventDispatcher } from 'svelte';
+	import { onMount, onDestroy } from 'svelte';
 
-	//	export let page;
 	let { page, onmeasure } = $props();
 
-	//const dispatch = createEventDispatcher();
 	let canvas;
 	let width = $state();
 	let height = $state();
-	//	let clientWidth;
-	//	let mounted;
 
 	function measure() {
 		onmeasure({
@@ -31,22 +27,13 @@
 		window.addEventListener('resize', measure);
 	}
 
-	/*
 	onMount(render);
+
 	onDestroy(() => {
 		window.removeEventListener('resize', measure);
-	});
-	*/
-
-	$effect(() => {
-		render();
-		return () => {
-			window.removeEventListener('resize', measure);
-		};
 	});
 </script>
 
 <div>
-	<!-- svelte-ignore element_invalid_self_closing_tag -->
-	<canvas bind:this={canvas} class="max-w-full" style="width: {width}px;" {width} {height} />
+	<canvas bind:this={canvas} class="max-w-full" style="width: {width}px;" {width} {height}></canvas>
 </div>
