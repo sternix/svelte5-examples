@@ -1,5 +1,5 @@
 <script>
-	import { onMount } from 'svelte';
+	import { onMount, tick } from 'svelte';
 	import Toolbar from './Toolbar.svelte';
 	import { pannable } from './utils/pannable.js';
 	import { tapout } from './utils/tapout.js';
@@ -152,7 +152,17 @@
 	}
 
 	function onDelete() {
-		ondelete();
+		operation = '';
+
+		// App.deleteObject'de object filtreleniyor,
+		// allObjects'ten siliniyor
+		// fakat toolbar object olmadığı halde kalıyor
+		// bu tetiklenmiyor, tetiklenmesi için
+		// bir sonraki update'te çalıştır
+		(async () => {
+			await tick();
+			ondelete();
+		})();
 	}
 
 	onMount(render);

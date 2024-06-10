@@ -1,10 +1,11 @@
 <script>
 	let { children } = $props();
-	let portal = $state();
+	let portal;
 	//$: portal && document.body.appendChild(portal);
 
 	$effect(() => {
-		document.body.appendChild(portal);
+		if (portal)
+			document.body.appendChild(portal);
 	});
 </script>
 
