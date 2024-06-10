@@ -1,5 +1,5 @@
 <script>
-	import { onMount, tick } from 'svelte';
+	import { onMount, flushSync } from 'svelte';
 	import Toolbar from './Toolbar.svelte';
 	import { pannable } from './utils/pannable.js';
 	import { tapout } from './utils/tapout.js';
@@ -152,17 +152,28 @@
 	}
 
 	function onDelete() {
-		operation = '';
+		// önce operation'u değiştirerek aşağıdaki if bloğunu ve toolbar'ı gizliyoruz,
+		// sonra silme işlemi gerçekleşiyor
+		flushSync(() => (operation = ''));
+		ondelete();
 
 		// App.deleteObject'de object filtreleniyor,
 		// allObjects'ten siliniyor
 		// fakat toolbar object olmadığı halde kalıyor
 		// bu tetiklenmiyor, tetiklenmesi için
 		// bir sonraki update'te çalıştır
+
+		/*
+		diğer bir yol olarak, tick yolu
+		bu şekilde de çalışıyor
+
+		import { tick } from 'svelte';
 		(async () => {
 			await tick();
 			ondelete();
 		})();
+
+		*/
 	}
 
 	onMount(render);
