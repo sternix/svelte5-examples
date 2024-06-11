@@ -40,3 +40,6 @@ build
 
 # rust için
 target/
+
+# svelte-kit
+.svelte-kit
