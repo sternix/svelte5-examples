@@ -15,6 +15,7 @@
     button {
         height: 50px;
         background-color: #2b2a33;
+        color: white;
     }
 
     .background {
