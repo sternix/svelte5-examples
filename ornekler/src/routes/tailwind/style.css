@@ -1,1 +1,5 @@
 @import "tailwindcss";
+
+.btn {
+    @apply px-4 h-12 inline-flex items-center rounded-lg w-32 justify-center font-bold;
+}
