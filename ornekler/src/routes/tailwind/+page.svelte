@@ -2,6 +2,9 @@
 <a href="/">Anasayfa</a>
 <nav>
     <ul>
-        <li><a href="/tailwind/button">Login</a></li>
+        <li><a href="/tailwind/button">Button</a></li>
+        <li><a href="/tailwind/container">Container</a></li>
+        <li><a href="/tailwind/cesitli">Çeşitli</a></li>
+        <li><a href="/tailwind/cesitli/sidebar">Sidebar</a></li>
     </ul>
 </nav>
