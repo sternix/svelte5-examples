@@ -6,5 +6,6 @@
         <li><a href="/tailwind/container">Container</a></li>
         <li><a href="/tailwind/cesitli">Çeşitli</a></li>
         <li><a href="/tailwind/cesitli/sidebar">Sidebar</a></li>
+        <li><a href="/tailwind/scale">Scale</a></li>
     </ul>
 </nav>
