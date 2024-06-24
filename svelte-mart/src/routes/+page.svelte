@@ -72,7 +72,7 @@
 	</div>
 </div>
 
-<div class="grid gap-6 bg-gray-100 p-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+<div class="grid gap-6 bg-gray-100 p-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
 	{#each data.products as product}
 		<div class="overflow-hidden rounded-xl bg-white shadow-lg">
 			<img src={product.thumbnail} alt={product.title} class="h-48 w-full object-cover" />
