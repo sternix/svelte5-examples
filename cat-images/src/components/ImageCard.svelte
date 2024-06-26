@@ -1,9 +1,7 @@
 <script>
-    import { imageStore } from "@/state/store.svelte.js";
+    import { store } from "@/state/store.svelte.js";
     import { placeholderImgUrl } from "@/constants/api";
     import { onMount } from "svelte";
-
-    const store = imageStore();
 
     let { index } = $props();
 

@@ -1,12 +1,11 @@
 <script>
     import { fetchCats } from "@/helpers/fetcher";
-    import { imageStore } from "@/state/store.svelte.js";
+    import { store } from "@/state/store.svelte.js";
     import ImageCard from "./ImageCard.svelte";
     import Loader from "./Loader.svelte";
     import { onMount } from "svelte";
 
     let bottomSection;
-    const store = imageStore();
 
     onMount(async () => {
         const cats = await fetchCats();

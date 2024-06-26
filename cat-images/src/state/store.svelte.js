@@ -14,8 +14,4 @@ class ImageStore {
     }
 }
 
-const store = new ImageStore();
-
-export function imageStore() {
-    return store;
-}
+export const store = new ImageStore();
