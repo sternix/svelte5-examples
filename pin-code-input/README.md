@@ -4,4 +4,4 @@
 
 svelte'den daha çok css örneği
 
-input pattern işe yaramıyor
+input pattern form submit olmadan işe yaramıyor

@@ -19,6 +19,7 @@
         inputmode="numeric"
         maxlength="6"
         pattern="\d{6}"
+        title="Sadece rakam giriniz"
         bind:this={inputElement}
     />
 </label>
