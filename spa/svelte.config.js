@@ -6,10 +6,10 @@ const config = {
 		adapter: adapter({
 			fallback: 'index.html'
 		}),
-		/* site http://abc.com/xyz 
+		/* site http://example.com/app 
 		olarak sunulacak ise
 		paths: {
-			base: '/xyz',
+			base: '/app',
 		},
 		*/
 	}
