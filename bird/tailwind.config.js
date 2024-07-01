@@ -4,7 +4,6 @@ import plugin from 'tailwindcss/plugin';
 export default {
     content: [
         './src/**/*.{html,js,svelte,ts}',
-        './node_modules/svelte-bird/**/*.{html,js,svelte,ts}',
     ],
     darkMode: 'class',
     theme: {
