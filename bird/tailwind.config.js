@@ -1,5 +1,11 @@
+import plugin from 'tailwindcss/plugin';
+
+/** @type {import('tailwindcss').Config} */
 export default {
-    content: ['./src/**/*.{html,js,svelte,ts}'],
+    content: [
+        './src/**/*.{html,js,svelte,ts}',
+        './node_modules/svelte-bird/**/*.{html,js,svelte,ts}',
+    ],
     darkMode: 'class',
     theme: {
         extend: {
@@ -24,5 +30,6 @@ export default {
                 );
             });
         }),
+        /////
     ],
 };

@@ -2,26 +2,26 @@ import { Google, Home, Packages, Teaching } from '../icons';
 
 export const sidebarData = [
     {
-        stringSection: 'PAGES:',
+        stringSection: 'Pages:',
         arrayMenus: [
             {
-                stringText: 'HOME',
+                stringText: 'Home',
                 stringHref: '/',
                 stringIcon: Home,
                 stringName: 'menuHome',
             },
             {
-                stringText: 'TEACHING',
+                stringText: 'Teaching',
                 stringIcon: Teaching,
                 arraySubmenus: [
                     {
-                        stringText: 'COURSES',
+                        stringText: 'Courses',
                         stringHref: 'courses',
                         stringName: 'menuCourses',
-                        stringBadge: 'NOVO',
+                        stringBadge: 'New',
                     },
                     {
-                        stringText: 'ARTICLES',
+                        stringText: 'Articles',
                         stringHref: '/articles',
                         stringName: 'menuArticles',
                     },
@@ -31,21 +31,21 @@ export const sidebarData = [
             {
                 stringName: 'menuPackages',
                 stringIcon: Packages,
-                stringText: 'PACKAGES',
+                stringText: 'Packages',
                 stringHref: '/packages',
             },
         ],
     },
     {
-        stringSection: 'LINKS:',
+        stringSection: 'Links:',
         arrayMenus: [
             {
                 stringName: 'menuGoogle',
-                stringText: 'GOOGLE',
-                stringHref: 'http://www.google.com.br',
+                stringText: 'Google',
+                stringHref: 'http://www.google.com',
                 stringIcon: Google,
                 stringTarget: '_blank',
-                stringBadge: 'NOVO',
+                stringBadge: 'New',
             },
         ],
     },
