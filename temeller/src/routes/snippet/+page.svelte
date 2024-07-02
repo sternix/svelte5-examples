@@ -9,7 +9,7 @@
 {@render ilk()}
 
 {#snippet iki(name)}
-    <p>Ben ikici snippet'im adım {name}</p>
+    <p>Ben ikinci snippet'im adım {name}</p>
 {/snippet}
 
 {@render iki('Test')}
