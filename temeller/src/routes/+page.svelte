@@ -4,4 +4,5 @@
     <a href="./snippet">Snippets</a>
     <a href="./clock">Saat</a>
     <a href="./flight">Flight Booker</a>
+    <a href="./hackernews">Hackernews</a>
 </nav>
