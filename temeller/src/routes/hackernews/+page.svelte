@@ -1,3 +1,7 @@
+<!-- https://svelte.dev/examples/hacker-news -->
+
+<!-- sveltekit router ile anlaşamıyor -->
+
 <script>
 	import { onMount } from "svelte";
 	import List from "./List.svelte";
@@ -28,7 +32,7 @@
 	onMount(hashchange);
 </script>
 
-<svelte:window on:hashchange={hashchange} />
+<svelte:window onhashchange={hashchange} />
 
 <main>
 	{#if item}
