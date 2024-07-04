@@ -22,6 +22,9 @@
         <li>
             <a href="slide">Slide</a>
         </li>
+        <li>
+            <a href="loading">Loading</a>
+        </li>
     </ul>
 </nav>
 

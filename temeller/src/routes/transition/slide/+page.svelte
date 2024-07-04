@@ -1,3 +1,4 @@
+<!-- https://learn.svelte.dev/tutorial/global-transitions -->
 <script>
     import { slide } from "svelte/transition";
 
