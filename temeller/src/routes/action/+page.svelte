@@ -4,6 +4,9 @@
         <li>
             <a href="draw">Draw</a>
         </li>
+        <li>
+            <a href="tippy">Tippy</a>
+        </li>
     </ul>
 </nav>
 
