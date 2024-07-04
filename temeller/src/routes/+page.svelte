@@ -7,4 +7,5 @@
     <a href="./hackernews">Hackernews</a>
     <a href="./tweens">Tweened</a>
     <a href="./springs">Springs</a>
+    <a href="./transition">Transition</a>
 </nav>
