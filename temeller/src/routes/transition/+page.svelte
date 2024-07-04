@@ -13,6 +13,9 @@
         <li>
             <a href="spin">Spin</a>
         </li>
+        <li>
+            <a href="typewriter">Typewriter</a>
+        </li>
     </ul>
 </nav>
 
