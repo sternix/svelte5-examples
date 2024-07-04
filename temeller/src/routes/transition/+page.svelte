@@ -19,6 +19,9 @@
         <li>
             <a href="events">Events</a>
         </li>
+        <li>
+            <a href="slide">Slide</a>
+        </li>
     </ul>
 </nav>
 
