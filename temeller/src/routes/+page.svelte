@@ -5,4 +5,5 @@
     <a href="./clock">Saat</a>
     <a href="./flight">Flight Booker</a>
     <a href="./hackernews">Hackernews</a>
+    <a href="./tweens">Tweened</a>
 </nav>
