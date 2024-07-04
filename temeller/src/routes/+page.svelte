@@ -6,4 +6,5 @@
     <a href="./flight">Flight Booker</a>
     <a href="./hackernews">Hackernews</a>
     <a href="./tweens">Tweened</a>
+    <a href="./springs">Springs</a>
 </nav>
