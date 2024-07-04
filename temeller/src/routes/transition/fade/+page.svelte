@@ -1,3 +1,4 @@
+<!-- https://learn.svelte.dev/tutorial/transition -->
 <script>
     import { fade } from "svelte/transition";
     let visible = $state(true);

@@ -7,6 +7,12 @@
         <li>
             <a href="fly">Fly</a>
         </li>
+        <li>
+            <a href="in_out">In and out</a>
+        </li>
+        <li>
+            <a href="spin">Spin</a>
+        </li>
     </ul>
 </nav>
 
