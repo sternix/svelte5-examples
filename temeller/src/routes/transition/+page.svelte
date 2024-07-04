@@ -16,6 +16,9 @@
         <li>
             <a href="typewriter">Typewriter</a>
         </li>
+        <li>
+            <a href="events">Events</a>
+        </li>
     </ul>
 </nav>
 
