@@ -1,3 +1,4 @@
+<!-- https://learn.svelte.dev/tutorial/component-bindings -->
 <script>
     import Keypad from "./Keypad.svelte";
 
