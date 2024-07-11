@@ -66,6 +66,7 @@
     }
 
     $effect(() => {
+      // TODO: çok fala event oluşturuyor
       console.log("View openBehavior effect");
         const { index, behavior } = openBehavior;
         switch (behavior) {
@@ -172,6 +173,8 @@
 --bgcolor
 */
 </script>
+
+
 
 <!--
 --game-visibility = openOption === 'Game' ? 'visible' : 'hidden'
@@ -376,26 +379,26 @@ https://github.com/sveltejs/svelte/blob/main/documentation/docs/02-template-synt
       ontouchend={onTouchEndCeils}
       onmouseup={onMouseUpCeils}
     >
-      {@render Ceils(ceils,onMouseDownCeils,onMouseOverCeils)}
+      {@render Ceils(ceils,onMouseDownCeils)}
     </div>
   </section>
 </div>
 
-{#snippet Ceils({ceils,onMouseDown, onMouseEnter})}
+{#snippet Ceils(ceils,onMouseDown, onMouseEnter)}
   {#each ceils as ceil,index (index)}
-    <!-- svelte-ignore a11y_no_static_element_interactions -->
     <div
-      onmouseenter={() => onMouseEnter(index)}
       onmousedown={e => onMouseDown(e, index)}
       class="mine__ceil"
       index={index}
-    >
-      {@render Ceil(ceil)}
+      role="button"
+      tabindex={index}
+      >
+        {@render Ceil(ceil)}
     </div>
   {/each}
 {/snippet}
 
-{#snippet Ceil({state,MinesAround,opening})}
+{#snippet Ceil({state,minesAround,opening})}
   {#if state === 'open'}
     {@render MinesAround(minesAround) }
   {:else if state === 'flag'}
@@ -408,7 +411,7 @@ https://github.com/sveltejs/svelte/blob/main/documentation/docs/02-template-synt
     {@render Die() }
   {:else if state === 'unknown'}
     {#if opening}
-     {@render QuestionOpen() }
+      {@render QuestionOpen() }
     {:else}
       {@render Question() }
     {/if}
