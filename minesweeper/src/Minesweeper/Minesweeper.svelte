@@ -24,6 +24,7 @@
 
     $effect(() => {
         let timer;
+        status.status;
         switch (status.status) {
             case "started":
                 timer = setInterval(() => (seconds += 1), 1000);
@@ -47,7 +48,7 @@
 
     function dispatch(action = {}) {
         //console.log(JSON.stringify(action,null,2))
-        console.log("dispatch", action.type);
+        //console.log("dispatch", action.type);
         switch (action.type) {
             case "CLEAR_MAP":
                 const difficulty = action.payload || status.difficulty;
@@ -67,7 +68,7 @@
                 break;
 
             case "OPEN_CEIL": {
-                console.log("OPEN_CEIL: action.payload", action.payload);
+                //console.log("OPEN_CEIL: action.payload", action.payload);
                 const indexes = autoCeils(action.payload);
                 const ceils = [...status.ceils];
                 indexes.forEach((i) => {
@@ -130,7 +131,7 @@
                 status = {
                     ...status,
                     status: "died",
-                    ceils
+                    ceils,
                 };
                 break;
             }
@@ -223,7 +224,8 @@
                 }
                 break;
             default:
-                console.log(status.status);
+                break;
+                //console.log(status.status);
         }
     }
 
@@ -255,7 +257,7 @@
     }
 
     $effect(() => {
-        console.log("status.status effect");
+        //console.log("status.status effect");
         if (status.status === "started" && checkRemains() === 0) {
             dispatch({ type: "WON" });
         }
@@ -324,7 +326,7 @@
 
     function autoCeils(index) {
         //console.log(JSON.stringify(status,null,2));
-        console.log("index: ", index);
+        //console.log("index: ", index);
 
         const { rows, columns } = status;
         const ceils = status.ceils.map((ceil) => ({
@@ -372,6 +374,12 @@
             return true;
         });
     }
+
+    /*
+$inspect(status.mines).with((_t,v) => {
+    console.log("Mines",v);
+})
+    */
 </script>
 
 <View
@@ -390,5 +398,5 @@
     {openingCeils}
     sameTouchPos
     lastTouch
-    difficulty
+    difficulty={status.difficulty}
 />

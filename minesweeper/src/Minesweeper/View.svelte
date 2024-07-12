@@ -37,7 +37,7 @@
         openingCeils,
         sameTouchPos,
         lastTouch,
-        seconds = $bindable()
+        seconds = $bindable() // bu şekilde true değil 0 geliyor
     } = $props();
 
     let face;
@@ -48,6 +48,7 @@
     let openBehavior = $state({ index: -1, behavior: "" });
     let platform = $derived(window.innerWidth <= 768 ? 'mobile' : 'desktop');
 
+    /*
     function remainMines() {
         return (
             mines -
@@ -56,6 +57,22 @@
             ).length
         );
     }
+        */
+
+    let remainMines = $state(mines.length);
+
+    $effect(() => {
+        remainMines = (mines -
+            ceils.filter(
+                (ceil) => ceil.durum === "flag" || ceil.durum === "misflagged",
+            ).length)
+    });
+
+    /*
+    $inspect(remainMines).with((_t,v) => {
+      console.log("remainMines",v);
+    });
+    */
 
     function onMouseDownContent(e) {
         if (e.button !== 0) return;
@@ -66,8 +83,7 @@
     }
 
     $effect(() => {
-      // TODO: çok fala event oluşturuyor
-      console.log("View openBehavior effect");
+      //console.log("View openBehavior effect");
         const { index, behavior } = openBehavior;
         switch (behavior) {
             case "single":
@@ -145,7 +161,7 @@
     }
 
     $effect(() => {
-      console.log("View touch effect");
+      //console.log("View touch effect");
         window.addEventListener("touchend", onTouchEndDropdown);
         window.addEventListener("mouseup", onMouseUp);
         return () => {
@@ -163,34 +179,7 @@
     let gameVisibility = $derived(openOption === 'Game' ? 'visible' : 'hidden');
     let helpVisibility = $derived(openOption === 'Help' ? 'visible' : 'hidden');
 
-/*
---game-visibility
---help-visibility
---columns
---rows
-
---color
---bgcolor
-*/
 </script>
-
-
-
-<!--
---game-visibility = openOption === 'Game' ? 'visible' : 'hidden'
---help-visibility: openOption === 'Help' ? 'visible' : 'hidden' }}
---columns
---rows
---color
---bgcolor
-
-color: ${({ platform }) => (platform === 'desktop' ? '#FFF' : '#000')};
-      background-color: ${({ platform }) =>
-        platform === 'desktop' ? '#0b61ff' : 'transparent'};
-
-https://github.com/sveltejs/svelte/blob/main/documentation/docs/02-template-syntax/05-styles-and-classes.md 
-
--->
 
 <!-- svelte-ignore a11y_no_static_element_interactions -->
 <div style="display: inline-block;" oncontextmenu={(e) => e.preventDefault()}>
@@ -288,7 +277,7 @@ https://github.com/sveltejs/svelte/blob/main/documentation/docs/02-template-synt
         </div>
         <div class="mine__drop-down__separator"></div>
 
-        <div class="mine__drop-down__row" onMouseUp={onClose}>
+        <div class="mine__drop-down__row" onmouseup={()=> onClose()}>
           <div class="mine__drop-down__check"></div>
           <span>Exit</span>
           <span class="mine__drop-down__hot-key"></span>
@@ -364,7 +353,8 @@ https://github.com/sveltejs/svelte/blob/main/documentation/docs/02-template-synt
   <section class="mine__content" onmousedown={onMouseDownContent}>
     <div class="mine__score-bar">
       <div class="mine__digits__outer">
-        <Digit number={remainMines()} />
+      <!-- <Digit number={remainMines()} /> -->
+      <Digit bind:number={remainMines} />
       </div>
       <div class="mine__face__outer">
         <button bind:this={face} class="mine__face" onclick={() => onReset()}>
@@ -399,7 +389,6 @@ https://github.com/sveltejs/svelte/blob/main/documentation/docs/02-template-synt
 {/snippet}
 
 {#snippet Ceil({durum,minesAround,opening})}
-{console.log("ceil durum: ", durum)}
   {#if durum === 'open'}
     {@render MinesAround(minesAround) }
   {:else if durum === 'flag'}
@@ -501,7 +490,6 @@ https://github.com/sveltejs/svelte/blob/main/documentation/docs/02-template-synt
     border-top: rgb(128, 128, 128) solid 1px;
 }
 
-/* display: inline-block; */
 img {
     pointer-events: none;
 }

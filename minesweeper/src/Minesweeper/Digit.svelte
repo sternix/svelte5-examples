@@ -12,7 +12,7 @@
     import digit9 from "$assets/digit9.png";
     import digit_ from "$assets/digit-.png";
 
-    let { number } = $props();
+    let { number = $bindable() } = $props();
 
     const digits = [
         digit0,
@@ -27,21 +27,31 @@
         digit9,
     ];
 
-    let numberStr = $state();
-    if (number < 0) {
-        const _number = -number % 100;
-        if (_number === 0) {
-            numberStr = "00";
-        } else if (_number < 10) {
-            numberStr = "0" + _number;
+    /*
+    $inspect(number).with((_t,v) => {
+      console.log("digit.number",v);
+    });
+    */
+
+    let numberStr = $derived.by(() => {
+        let ns;
+        if (number < 0) {
+            const _number = -number % 100;
+            if (_number === 0) {
+                ns = "00";
+            } else if (_number < 10) {
+                ns = "0" + _number;
+            } else {
+                ns = String(_number);
+            }
         } else {
-            numberStr = String(_number);
+            ns = number < 999 ? String(number) : "999";
+            if (number < 10) ns = "00" + ns;
+            else if (number < 100) ns = "0" + ns;
         }
-    } else {
-        numberStr = number < 999 ? String(number) : "999";
-        if (number < 10) numberStr = "00" + numberStr;
-        else if (number < 100) numberStr = "0" + numberStr;
-    }
+
+        return ns;
+    });
 </script>
 
 {#if number < 0}

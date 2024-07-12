@@ -22,6 +22,7 @@
   });
 
   function onClose() {
+    // burası menüdeki Exit 
     console.log("onClose çalıştı");
   }
 </script>
