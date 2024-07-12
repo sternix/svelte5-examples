@@ -10,7 +10,7 @@
     //   columns: Number,
     //   mines: Number,
     //   ceils: Array {
-    //     state: 'cover' || 'flag' || 'unknown' || 'open' || 'die' || 'misflagged',
+    //     durum: 'cover' || 'flag' || 'unknown' || 'open' || 'die' || 'misflagged',
     //     minesAround: Number (negative for mine itself),
     //     opening: true || false
     //   }
@@ -47,6 +47,7 @@
 
     function dispatch(action = {}) {
         //console.log(JSON.stringify(action,null,2))
+        console.log("dispatch", action.type);
         switch (action.type) {
             case "CLEAR_MAP":
                 const difficulty = action.payload || status.difficulty;
@@ -66,12 +67,12 @@
                 break;
 
             case "OPEN_CEIL": {
-                console.log("OPEN_CEIL: action.payload", action.payload)
+                console.log("OPEN_CEIL: action.payload", action.payload);
                 const indexes = autoCeils(action.payload);
                 const ceils = [...status.ceils];
                 indexes.forEach((i) => {
                     const ceil = ceils[i];
-                    ceils[i] = { ...ceil, state: "open" };
+                    ceils[i] = { ...ceil, durum: "open" };
                 });
                 status = {
                     ...status,
@@ -85,7 +86,7 @@
                 const ceils = [...status.ceils];
                 const ceil = status.ceils[index];
                 let newState;
-                switch (ceil.state) {
+                switch (ceil.durum) {
                     case "cover":
                         newState = "flag";
                         break;
@@ -96,9 +97,9 @@
                         newState = "cover";
                         break;
                     default:
-                        throw new Error(`Unknown ceil state ${ceil.state}`);
+                        throw new Error(`Unknown ceil state ${ceil.durum}`);
                 }
-                ceils[index] = { ...ceil, state: newState };
+                ceils[index] = { ...ceil, durum: newState };
                 status = {
                     ...status,
                     ceils,
@@ -106,31 +107,30 @@
                 break;
             }
 
-
             case "GAME_OVER": {
                 const ceils = status.ceils.map((ceil) => {
-                    if (ceil.minesAround < 0 && ceil.state !== "flag") {
-                        status = {
+                    if (ceil.minesAround < 0 && ceil.durum !== "flag") {
+                        return {
                             ...ceil,
-                            state: "mine",
+                            durum: "mine",
                         };
-                    } else if (ceil.state === "flag" && ceil.minesAround >= 0) {
-                        status = {
+                    } else if (ceil.durum === "flag" && ceil.minesAround >= 0) {
+                        return {
                             ...ceil,
-                            state: "misflagged",
+                            durum: "misflagged",
                         };
                     } else {
-                        status = {
+                        return {
                             ...ceil,
                             opening: false,
                         };
                     }
                 });
-                ceils[action.payload].state = "die";
+                ceils[action.payload].durum = "die";
                 status = {
                     ...status,
                     status: "died",
-                    ceils,
+                    ceils
                 };
                 break;
             }
@@ -138,27 +138,27 @@
             case "WON": {
                 const ceils = status.ceils.map((ceil) => {
                     if (ceil.minesAround >= 0) {
-                        status = {
+                        return {
                             ...ceil,
-                            state: "open",
+                            durum: "open",
                         };
                     } else {
-                        status = {
+                        return {
                             ...ceil,
-                            state: "flag",
+                            durum: "flag",
                         };
                     }
                 });
                 status = {
                     ...status,
-                    status: "won",
                     ceils,
+                    status: "won",
                 };
                 break;
             }
 
-
             case "OPENING_CEIL": {
+                /*
                 if (action.payload === -1)
                     return;
                 const ceil = status.ceils[action.payload];
@@ -167,10 +167,11 @@
                     opening: false,
                 }));
                 ceils[action.payload] = { ...ceil, opening: true };
-                status = {
-                    ...status,
-                    ceils,
-                };
+                status.ceils = ceils;
+                */
+                const index = action.payload;
+                if (index === -1) return;
+                status.ceils[index].opening = true;
                 break;
             }
 
@@ -189,10 +190,7 @@
                     ceil.opening = true;
                     ceils[index] = ceil;
                 });
-                status = {
-                    ...status,
-                    ceils,
-                };
+                status.ceils = ceils;
                 break;
             }
 
@@ -203,7 +201,7 @@
 
     function changeCeilState(index) {
         const ceil = status.ceils[index];
-        if (ceil.state === "open" || ["won", "died"].includes(status.status))
+        if (ceil.durum === "open" || ["won", "died"].includes(status.status))
             return;
         dispatch({ type: "CHANGE_CEIL_STATE", payload: index });
     }
@@ -216,7 +214,7 @@
                 break;
             case "started":
                 const ceil = status.ceils[index];
-                if (["flag", "open"].includes(ceil.state)) {
+                if (["flag", "open"].includes(ceil.durum)) {
                     break;
                 } else if (ceil.minesAround < 0) {
                     dispatch({ type: "GAME_OVER", payload: index });
@@ -232,7 +230,7 @@
     function openCeils(index) {
         const ceil = status.ceils[index];
         if (
-            ceil.state !== "open" ||
+            ceil.durum !== "open" ||
             ceil.minesAround <= 0 ||
             status.status !== "started"
         )
@@ -240,14 +238,14 @@
         const indexes = getNearIndexes(index, status.rows, status.columns);
         const nearCeils = indexes.map((i) => status.ceils[i]);
         if (
-            nearCeils.filter((ceil) => ceil.state === "flag").length !==
+            nearCeils.filter((ceil) => ceil.durum === "flag").length !==
             ceil.minesAround
         )
             return;
         const mineIndex = indexes.find(
             (i) =>
                 status.ceils[i].minesAround < 0 &&
-                status.ceils[i].state !== "flag",
+                status.ceils[i].durum !== "flag",
         );
         if (mineIndex) {
             dispatch({ type: "GAME_OVER", payload: mineIndex });
@@ -269,7 +267,7 @@
 
     function checkRemains() {
         const safeCeils = status.ceils
-            .filter((ceil) => ceil.state !== "open")
+            .filter((ceil) => ceil.durum !== "open")
             .filter((ceil) => ceil.minesAround >= 0);
         return safeCeils.length;
     }
@@ -289,7 +287,7 @@
         const ceils = Array(rows * columns)
             .fill()
             .map((_) => ({
-                state: "cover",
+                durum: "cover",
                 minesAround: 0,
                 opening: false,
             }));
@@ -326,7 +324,7 @@
 
     function autoCeils(index) {
         //console.log(JSON.stringify(status,null,2));
-        console.log("index: ",index);
+        console.log("index: ", index);
 
         const { rows, columns } = status;
         const ceils = status.ceils.map((ceil) => ({
@@ -336,7 +334,7 @@
         return walkCeils(index);
         function walkCeils(index) {
             const ceil = ceils[index];
-            if (ceil.walked || ceil.minesAround < 0 || ceil.state === "flag")
+            if (ceil.walked || ceil.minesAround < 0 || ceil.durum === "flag")
                 return [];
             ceil.walked = true;
             if (ceil.minesAround > 0) return [index];

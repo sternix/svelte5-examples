@@ -52,7 +52,7 @@
         return (
             mines -
             ceils.filter(
-                (ceil) => ceil.state === "flag" || ceil.state === "misflagged",
+                (ceil) => ceil.durum === "flag" || ceil.durum === "misflagged",
             ).length
         );
     }
@@ -134,7 +134,7 @@
         );
         if (index === -1 || !sameTouchPos) return;
         if (new Date() - lastTouch < 150) {
-            if (ceils[index].state === "open") {
+            if (ceils[index].durum === "open") {
                 openCeils(index);
             } else {
                 openCeil(index);
@@ -398,18 +398,19 @@ https://github.com/sveltejs/svelte/blob/main/documentation/docs/02-template-synt
   {/each}
 {/snippet}
 
-{#snippet Ceil({state,minesAround,opening})}
-  {#if state === 'open'}
+{#snippet Ceil({durum,minesAround,opening})}
+{console.log("ceil durum: ", durum)}
+  {#if durum === 'open'}
     {@render MinesAround(minesAround) }
-  {:else if state === 'flag'}
+  {:else if durum === 'flag'}
     {@render Flag() }
-  {:else if state === 'misflagged'}
+  {:else if durum === 'misflagged'}
     {@render MisFlagged() }
-  {:else if state === 'mine'}
+  {:else if durum === 'mine'}
     {@render Mine() }
-  {:else if state === 'die'}
+  {:else if durum === 'die'}
     {@render Die() }
-  {:else if state === 'unknown'}
+  {:else if durum === 'unknown'}
     {#if opening}
       {@render QuestionOpen() }
     {:else}
@@ -461,7 +462,7 @@ https://github.com/sveltejs/svelte/blob/main/documentation/docs/02-template-synt
    <img alt="flag" src={flag} />
 {/snippet}
 
-{#snippet MinesAround({mines})}
+{#snippet MinesAround(mines)}
    {@render CeilBackgroundOpen()} 
    <img alt="mines-around" src={getTextImg(mines)} />
 {/snippet}

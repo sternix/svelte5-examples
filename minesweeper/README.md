@@ -5,7 +5,7 @@ React ile yazılmış
 
 Svelte 5 ile yeniden yazmaya çalıştım
 
-
+TODO:
 effect_update_depth_exceeded
 
     $effect(() => {
@@ -21,3 +21,7 @@ effect_update_depth_exceeded
                 openingCeil(-1);
         }
     });
+
+    seconds çalışmıyor
+
+    Menüye tıkladıktan sonra menü gitmiyor
