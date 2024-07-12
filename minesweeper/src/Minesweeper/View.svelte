@@ -31,13 +31,13 @@
         openCeil,
         openCeils,
         status,
-        seconds,
         onClose,
         difficulty,
         openingCeil,
         openingCeils,
         sameTouchPos,
         lastTouch,
+        seconds = $bindable()
     } = $props();
 
     let face;

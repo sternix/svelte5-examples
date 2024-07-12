@@ -4,7 +4,6 @@
   let samePos = $state(false);
 
   $effect(() => {
-    console.log("App effect");
     function touchStart() {
       samePos = true;
       lastTouch = new Date();

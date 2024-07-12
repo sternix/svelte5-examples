@@ -13,7 +13,6 @@
     import digit_ from "$assets/digit-.png";
 
     let { number } = $props();
-    console.log("Digit number", number);
 
     const digits = [
         digit0,

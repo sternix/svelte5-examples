@@ -23,7 +23,6 @@
     let seconds = $state(0);
 
     $effect(() => {
-        console.log("timer effect");
         let timer;
         switch (status.status) {
             case "started":
@@ -47,7 +46,7 @@
     }
 
     function dispatch(action = {}) {
-        console.log(JSON.stringify(action,null,2))
+        //console.log(JSON.stringify(action,null,2))
         switch (action.type) {
             case "CLEAR_MAP":
                 const difficulty = action.payload || status.difficulty;
@@ -196,6 +195,9 @@
                 };
                 break;
             }
+
+            default:
+                break;
         }
     }
 
@@ -385,7 +387,7 @@
     {openCeil}
     {openCeils}
     {onReset}
-    seconds
+    bind:seconds
     {openingCeil}
     {openingCeils}
     sameTouchPos
