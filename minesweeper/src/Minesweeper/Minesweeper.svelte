@@ -50,10 +50,12 @@
         //console.log(JSON.stringify(action,null,2))
         //console.log("dispatch", action.type);
         switch (action.type) {
+            /*
             case "CLEAR_MAP":
                 const difficulty = action.payload || status.difficulty;
                 status = getInitState(difficulty);
                 break;
+                */
 
             case "START_GAME":
                 const exclude = action.payload;
@@ -264,7 +266,7 @@
     });
 
     function onReset(difficulty) {
-        dispatch({ type: "CLEAR_MAP", payload: difficulty });
+        status = getInitState( difficulty || status.difficulty);
     }
 
     function checkRemains() {
@@ -396,7 +398,7 @@ $inspect(status.mines).with((_t,v) => {
     bind:seconds
     {openingCeil}
     {openingCeils}
-    sameTouchPos
+    {sameTouchPos}
     lastTouch
     difficulty={status.difficulty}
 />
