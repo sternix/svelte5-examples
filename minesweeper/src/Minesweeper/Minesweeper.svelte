@@ -248,6 +248,7 @@
             }
                 */
 
+            /*
             case "OPENING_CEILS": {
                 const indexes = getNearIndexes(
                     action.payload,
@@ -266,6 +267,7 @@
                 status.ceils = ceils;
                 break;
             }
+                */
 
             default:
                 break;
@@ -380,7 +382,20 @@
 
     function openingCeils(index) {
         if (["died", "won"].includes(status.status)) return;
-        dispatch({ type: "OPENING_CEILS", payload: index });
+
+        const indexes = getNearIndexes(index, status.rows, status.columns);
+        const ceils = status.ceils.map((ceil) => ({
+            ...ceil,
+            opening: false,
+        }));
+        [...indexes, index].forEach((index) => {
+            const ceil = { ...ceils[index] };
+            ceil.opening = true;
+            ceils[index] = ceil;
+        });
+        status.ceils = ceils;
+
+        // dispatch({ type: "OPENING_CEILS", payload: index });
     }
 
     function genGameConfig(config) {
