@@ -84,6 +84,27 @@
         };
     }
 
+    function won() {
+        const ceils = status.ceils.map((ceil) => {
+            if (ceil.minesAround >= 0) {
+                return {
+                    ...ceil,
+                    durum: "open",
+                };
+            } else {
+                return {
+                    ...ceil,
+                    durum: "flag",
+                };
+            }
+        });
+        status = {
+            ...status,
+            ceils,
+            status: "won",
+        };
+    }
+
     function dispatch(action = {}) {
         //console.log(JSON.stringify(action,null,2))
         //console.log("dispatch", action.type);
@@ -180,6 +201,7 @@
             }
                 */
 
+            /*
             case "WON": {
                 const ceils = status.ceils.map((ceil) => {
                     if (ceil.minesAround >= 0) {
@@ -201,6 +223,7 @@
                 };
                 break;
             }
+                */
 
             case "OPENING_CEIL": {
                 /*
@@ -306,7 +329,8 @@
     $effect(() => {
         //console.log("status.status effect");
         if (status.status === "started" && checkRemains() === 0) {
-            dispatch({ type: "WON" });
+            //dispatch({ type: "WON" });
+            won();
         }
     });
 
