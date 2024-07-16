@@ -57,6 +57,33 @@
         };
     }
 
+    function gameOver(index) {
+        const ceils = status.ceils.map((ceil) => {
+            if (ceil.minesAround < 0 && ceil.durum !== "flag") {
+                return {
+                    ...ceil,
+                    durum: "mine",
+                };
+            } else if (ceil.durum === "flag" && ceil.minesAround >= 0) {
+                return {
+                    ...ceil,
+                    durum: "misflagged",
+                };
+            } else {
+                return {
+                    ...ceil,
+                    opening: false,
+                };
+            }
+        });
+        ceils[index].durum = "die";
+        status = {
+            ...status,
+            status: "died",
+            ceils,
+        };
+    }
+
     function dispatch(action = {}) {
         //console.log(JSON.stringify(action,null,2))
         //console.log("dispatch", action.type);
@@ -123,6 +150,7 @@
                 break;
             }
 
+            /*
             case "GAME_OVER": {
                 const ceils = status.ceils.map((ceil) => {
                     if (ceil.minesAround < 0 && ceil.durum !== "flag") {
@@ -150,6 +178,7 @@
                 };
                 break;
             }
+                */
 
             case "WON": {
                 const ceils = status.ceils.map((ceil) => {
@@ -234,7 +263,8 @@
                 if (["flag", "open"].includes(ceil.durum)) {
                     break;
                 } else if (ceil.minesAround < 0) {
-                    dispatch({ type: "GAME_OVER", payload: index });
+                    //dispatch({ type: "GAME_OVER", payload: index });
+                    gameOver(index);
                 } else {
                     dispatch({ type: "OPEN_CEIL", payload: index });
                 }
@@ -266,7 +296,8 @@
                 status.ceils[i].durum !== "flag",
         );
         if (mineIndex) {
-            dispatch({ type: "GAME_OVER", payload: mineIndex });
+            //dispatch({ type: "GAME_OVER", payload: mineIndex });
+            gameOver(mineIndex);
         } else {
             indexes.forEach((i) => dispatch({ type: "OPEN_CEIL", payload: i }));
         }
