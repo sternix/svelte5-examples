@@ -145,6 +145,7 @@
                 break;
             }
 
+            /*
             case "CHANGE_CEIL_STATE": {
                 const index = action.payload;
                 const ceils = [...status.ceils];
@@ -170,6 +171,7 @@
                 };
                 break;
             }
+                */
 
             /*
             case "GAME_OVER": {
@@ -271,7 +273,28 @@
         const ceil = status.ceils[index];
         if (ceil.durum === "open" || ["won", "died"].includes(status.status))
             return;
-        dispatch({ type: "CHANGE_CEIL_STATE", payload: index });
+
+        const ceils = [...status.ceils];
+        let newState;
+        switch (ceil.durum) {
+            case "cover":
+                newState = "flag";
+                break;
+            case "flag":
+                newState = "unknown";
+                break;
+            case "unknown":
+                newState = "cover";
+                break;
+            default:
+                throw new Error(`Unknown ceil state ${ceil.durum}`);
+        }
+        ceils[index] = { ...ceil, durum: newState };
+        status = {
+            ...status,
+            ceils,
+        };
+        //dispatch({ type: "CHANGE_CEIL_STATE", payload: index });
     }
 
     function openCeil(index) {
