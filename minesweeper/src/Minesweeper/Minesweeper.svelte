@@ -46,6 +46,17 @@
         };
     }
 
+    function startGame(exclude) {
+        status = {
+            ...status,
+            ...insertMines(
+                { ...Config[status.difficulty], exclude },
+                status.ceils,
+            ),
+            status: "started",
+        };
+    }
+
     function dispatch(action = {}) {
         //console.log(JSON.stringify(action,null,2))
         //console.log("dispatch", action.type);
@@ -57,6 +68,7 @@
                 break;
                 */
 
+            /*
             case "START_GAME":
                 const exclude = action.payload;
                 status = {
@@ -68,6 +80,7 @@
                     status: "started",
                 };
                 break;
+                */
 
             case "OPEN_CEIL": {
                 //console.log("OPEN_CEIL: action.payload", action.payload);
@@ -212,7 +225,8 @@
     function openCeil(index) {
         switch (status.status) {
             case "new":
-                dispatch({ type: "START_GAME", payload: index });
+                //dispatch({ type: "START_GAME", payload: index });
+                startGame();
                 dispatch({ type: "OPEN_CEIL", payload: index });
                 break;
             case "started":
@@ -227,7 +241,7 @@
                 break;
             default:
                 break;
-                //console.log(status.status);
+            //console.log(status.status);
         }
     }
 
@@ -266,7 +280,7 @@
     });
 
     function onReset(difficulty) {
-        status = getInitState( difficulty || status.difficulty);
+        status = getInitState(difficulty || status.difficulty);
     }
 
     function checkRemains() {
