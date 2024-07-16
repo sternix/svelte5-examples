@@ -105,18 +105,18 @@
         };
     }
 
-    function dispatch(action = {}) {
-        //console.log(JSON.stringify(action,null,2))
-        //console.log("dispatch", action.type);
-        switch (action.type) {
-            /*
+    //function dispatch(action = {}) {
+    //console.log(JSON.stringify(action,null,2))
+    //console.log("dispatch", action.type);
+    //switch (action.type) {
+    /*
             case "CLEAR_MAP":
                 const difficulty = action.payload || status.difficulty;
                 status = getInitState(difficulty);
                 break;
                 */
 
-            /*
+    /*
             case "START_GAME":
                 const exclude = action.payload;
                 status = {
@@ -130,6 +130,7 @@
                 break;
                 */
 
+    /*
             case "OPEN_CEIL": {
                 //console.log("OPEN_CEIL: action.payload", action.payload);
                 const indexes = autoCeils(action.payload);
@@ -144,8 +145,9 @@
                 };
                 break;
             }
+                */
 
-            /*
+    /*
             case "CHANGE_CEIL_STATE": {
                 const index = action.payload;
                 const ceils = [...status.ceils];
@@ -173,7 +175,7 @@
             }
                 */
 
-            /*
+    /*
             case "GAME_OVER": {
                 const ceils = status.ceils.map((ceil) => {
                     if (ceil.minesAround < 0 && ceil.durum !== "flag") {
@@ -203,7 +205,7 @@
             }
                 */
 
-            /*
+    /*
             case "WON": {
                 const ceils = status.ceils.map((ceil) => {
                     if (ceil.minesAround >= 0) {
@@ -227,8 +229,8 @@
             }
                 */
 
-            //case "OPENING_CEIL": {
-            /*
+    //case "OPENING_CEIL": {
+    /*
                 if (action.payload === -1)
                     return;
                 const ceil = status.ceils[action.payload];
@@ -240,7 +242,7 @@
                 status.ceils = ceils;
                 */
 
-            /*
+    /*
                 const index = action.payload;
                 if (index === -1) return;
                 status.ceils[index].opening = true;
@@ -248,7 +250,7 @@
             }
                 */
 
-            /*
+    /*
             case "OPENING_CEILS": {
                 const indexes = getNearIndexes(
                     action.payload,
@@ -269,10 +271,12 @@
             }
                 */
 
+    /*
             default:
                 break;
         }
     }
+        */
 
     function changeCeilState(index) {
         const ceil = status.ceils[index];
@@ -302,12 +306,26 @@
         //dispatch({ type: "CHANGE_CEIL_STATE", payload: index });
     }
 
+    function open_ceil(payload) {
+        const indexes = autoCeils(payload);
+        const ceils = [...status.ceils];
+        indexes.forEach((i) => {
+            const ceil = ceils[i];
+            ceils[i] = { ...ceil, durum: "open" };
+        });
+        status = {
+            ...status,
+            ceils,
+        };
+    }
+
     function openCeil(index) {
         switch (status.status) {
             case "new":
                 //dispatch({ type: "START_GAME", payload: index });
                 startGame();
-                dispatch({ type: "OPEN_CEIL", payload: index });
+                //dispatch({ type: "OPEN_CEIL", payload: index });
+                open_ceil(index);
                 break;
             case "started":
                 const ceil = status.ceils[index];
@@ -317,7 +335,8 @@
                     //dispatch({ type: "GAME_OVER", payload: index });
                     gameOver(index);
                 } else {
-                    dispatch({ type: "OPEN_CEIL", payload: index });
+                    //dispatch({ type: "OPEN_CEIL", payload: index });
+                    open_ceil(index);
                 }
                 break;
             default:
@@ -350,7 +369,8 @@
             //dispatch({ type: "GAME_OVER", payload: mineIndex });
             gameOver(mineIndex);
         } else {
-            indexes.forEach((i) => dispatch({ type: "OPEN_CEIL", payload: i }));
+            //indexes.forEach((i) => dispatch({ type: "OPEN_CEIL", payload: i }));
+            indexes.forEach((i) => open_ceil(i));
         }
     }
 
