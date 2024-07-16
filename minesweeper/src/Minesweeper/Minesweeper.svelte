@@ -227,8 +227,8 @@
             }
                 */
 
-            case "OPENING_CEIL": {
-                /*
+            //case "OPENING_CEIL": {
+            /*
                 if (action.payload === -1)
                     return;
                 const ceil = status.ceils[action.payload];
@@ -239,11 +239,14 @@
                 ceils[action.payload] = { ...ceil, opening: true };
                 status.ceils = ceils;
                 */
+
+            /*
                 const index = action.payload;
                 if (index === -1) return;
                 status.ceils[index].opening = true;
                 break;
             }
+                */
 
             case "OPENING_CEILS": {
                 const indexes = getNearIndexes(
@@ -370,7 +373,9 @@
 
     function openingCeil(index) {
         if (["died", "won"].includes(status.status)) return;
-        dispatch({ type: "OPENING_CEIL", payload: index });
+        if (index === -1) return;
+        status.ceils[index].opening = true;
+        //dispatch({ type: "OPENING_CEIL", payload: index });
     }
 
     function openingCeils(index) {
