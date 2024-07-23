@@ -13,6 +13,7 @@
         <li><a href="./transition">Transition</a></li>
         <li><a href="./action">Action</a></li>
         <li><a href="./keypad">Keypad</a></li>
+        <li><a href="./styles">Styles</a></li>
     </ul>
 </nav>
 
