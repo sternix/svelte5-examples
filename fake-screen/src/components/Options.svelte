@@ -25,7 +25,7 @@
 <div class="options">
   <div class="container">
     <header>
-      <a href="https://github.com/sternix/svelte5-examples/fake-screen">
+      <a href="https://github.com/sternix/svelte5-examples/tree/main/fake-screen">
         <span class="title">Fake Screen</span>
       </a>
       <GithubCorner />
