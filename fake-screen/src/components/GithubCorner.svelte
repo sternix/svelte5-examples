@@ -1,6 +1,6 @@
 <div class="github">
     <a
-        href="https://github.com/svelte5-examples/fake-screen"
+        href="https://github.com/sternix/svelte5-examples/fake-screen"
         class="github-corner"
         aria-label="View source on GitHub"
     >

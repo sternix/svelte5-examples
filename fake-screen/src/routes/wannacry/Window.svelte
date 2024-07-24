@@ -178,7 +178,7 @@
                 <div class="contacts">
                     <a
                         class="contact underline"
-                        href="https://github.com/ShizukuIchi"
+                        href="https://github.com/sternix"
                         target="_blank"
                         rel="noreferrer noopener"
                     >
@@ -186,7 +186,7 @@
                     </a>
                     <a
                         class="contact underline"
-                        href="https://github.com/ShizukuIchi"
+                        href="https://github.com/sternix"
                         target="_blank"
                         rel="noreferrer noopener"
                     >
@@ -194,7 +194,7 @@
                     </a>
                     <a
                         class="contact underline"
-                        href="https://github.com/ShizukuIchi"
+                        href="https://github.com/sternix"
                         target="_blank"
                         rel="noreferrer noopener"
                     >
