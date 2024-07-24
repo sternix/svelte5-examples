@@ -22,11 +22,11 @@
 
 <div class="background">
     <div class="text">404</div>
-    <div class="text">Not Found</div>
-    <div class="hint">{"<"} Home Page</div>
+    <div class="text">Sayfa Bulunamadı</div>
+    <div class="hint">{"<"} Ana Sayfa</div>
 </div>
 <div bind:this={shadow} class="shadow">
-    <div class="hint">{"<"} Home Page</div>
+    <div class="hint">{"<"} Ana Sayfa</div>
 </div>
 
 <style>
