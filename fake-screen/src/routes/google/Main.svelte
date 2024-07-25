@@ -33,7 +33,7 @@
                 type="text"
                 name="search"
                 bind:value
-                {onKeyDown}
+                onkeydown={onKeyDown}
             />
             <div class="icon">
                 <img

@@ -5,7 +5,8 @@
     let { goMain, onSearch, query } = $props();
 
     let value = $state(query);
-    let tag = $state("All");
+    let tag = $state("Tümü");
+    let tags = ['Tümü','Görseller','Videolar','Haritalar','Daha fazla'];
 
     function onClick() {
         onSearch(value);
@@ -16,6 +17,21 @@
         onSearch(value);
     }
 </script>
+
+{#snippet renderTags()}
+    {#each tags as tagName (tagName)}
+        <!-- svelte-ignore a11y_click_events_have_key_events -->
+        <!-- svelte-ignore a11y_no_static_element_interactions -->
+        <div
+            onclick={() => (tag = tagName)}
+            class="tag"
+            class:active={tagName === tag ? 'active' : ''}
+            data-testid={tagName}
+        >
+            {tagName}
+        </div>
+    {/each}
+{/snippet}
 
 <div class="google-search">
     <section class="top-bars">
@@ -30,14 +46,12 @@
                     src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png"
                     alt="Google"
                 />
-                <!-- svelte-ignore a11y_click_events_have_key_events -->
                 <div class="search-bar">
                     <input
-                        data-testid="input2"
                         id="search"
                         type="text"
                         name="search"
-                        bind:value
+                        bind:value={value}
                         onkeydown={onKeyDown}
                     />
                     <div class="icon">
@@ -60,10 +74,10 @@
             </div>
         </div>
         <div class="app-bar">
-            <div class="tags left">{renderTags()}</div>
+            <div class="tags left">{@render renderTags()}</div>
             <div class="tags right">
-                <div class="tag">Settings</div>
-                <div class="tag">Tools</div>
+                <div class="tag">Ayarlar</div>
+                <div class="tag">Araçlar</div>
             </div>
         </div>
     </section>
@@ -85,15 +99,15 @@
     <footer>
         <section class="upper">
             <div class="footer-items left">
-                <div class="item">Taiwan</div>
+                <div class="item">Türkiye</div>
             </div>
         </section>
         <section class="lower">
             <div class="footer-items left">
-                <div class="item">Help</div>
-                <div class="item">Send feedback</div>
-                <div class="item">Privacy</div>
-                <div class="item">Terms</div>
+                <div class="item">Yardım</div>
+                <div class="item">Geri Bildirim</div>
+                <div class="item">Gizlilik</div>
+                <div class="item">Kullanım Koşulları</div>
             </div>
         </section>
     </footer>
