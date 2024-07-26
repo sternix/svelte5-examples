@@ -1,12 +1,9 @@
 <a href="/">Anasayfa</a>
 <nav>
     <ul>
-        <li>
-            <a href="draw">Draw</a>
-        </li>
-        <li>
-            <a href="tippy">Tippy</a>
-        </li>
+        <li><a href="draw">Draw</a></li>
+        <li><a href="tippy">Tippy</a></li>
+        <li><a href="clickoutside">Click Outside</a></li>
     </ul>
 </nav>
 
