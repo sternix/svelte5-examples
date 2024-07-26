@@ -1,4 +1,5 @@
 <script>
+    // https://svelte.dev/examples/actions
     import clickOutside from "./clickOutside";
 
     let show = true;
