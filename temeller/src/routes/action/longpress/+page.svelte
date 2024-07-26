@@ -14,9 +14,9 @@
 <!--
 diğer taraftaki CustomEvent 
 node.dispatchEvent(new CustomEvent('longpress'))
-olarak şeklinde yollandı,
+olarak yollandı,
 bu tarafta onlongpress olarak tanımlandı
-yani tanımladığımız event'e on ekliyoruz
+yani tanımladığımız event'e on ekleyerek kullanabiliyoruz
 -->
 
 <button
