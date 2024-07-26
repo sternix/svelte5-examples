@@ -5,6 +5,7 @@
         <li><a href="tippy">Tippy</a></li>
         <li><a href="clickoutside">Click Outside</a></li>
         <li><a href="longpress">Long press</a></li>
+        <li><a href="pannable">Pannable</a></li>
     </ul>
 </nav>
 
