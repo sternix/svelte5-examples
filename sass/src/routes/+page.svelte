@@ -1,7 +1,11 @@
 <!--
 https://codepen.io/paulhbarker/pen/apvGdv
-
 -->
+
+<svelte:head>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+</svelte:head>
+
 <section id="timeline">
     <h1>A Flexbox Timeline</h1>
     <p class="leader">
