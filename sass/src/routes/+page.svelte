@@ -22,7 +22,7 @@ https://codepen.io/paulhbarker/pen/apvGdv
                     Soluta reiciendis deserunt doloribus consequatur, laudantium
                     odio dolorum laboriosam.
                 </p>
-                <img src="http://placehold.it/1000x500" alt="Graphic" />
+                <img src="/1000_500.png" alt="Graphic" />
             </div>
         </div>
 
@@ -39,7 +39,7 @@ https://codepen.io/paulhbarker/pen/apvGdv
                     Soluta reiciendis deserunt doloribus consequatur, laudantium
                     odio dolorum laboriosam.
                 </p>
-                <img src="http://placehold.it/1000x500" alt="Graphic" />
+                <img src="/1000_500.png" alt="Graphic" />
             </div>
         </div>
 
@@ -56,7 +56,7 @@ https://codepen.io/paulhbarker/pen/apvGdv
                     Soluta reiciendis deserunt doloribus consequatur, laudantium
                     odio dolorum laboriosam.
                 </p>
-                <img src="http://placehold.it/1000x500" alt="Graphic" />
+                <img src="/1000_500.png" alt="Graphic" />
             </div>
         </div>
 
@@ -73,7 +73,7 @@ https://codepen.io/paulhbarker/pen/apvGdv
                     Soluta reiciendis deserunt doloribus consequatur, laudantium
                     odio dolorum laboriosam.
                 </p>
-                <img src="http://placehold.it/1000x500" alt="Graphic" />
+                <img src="1000_500.png" alt="Graphic" />
             </div>
         </div>
 
@@ -90,7 +90,7 @@ https://codepen.io/paulhbarker/pen/apvGdv
                     Soluta reiciendis deserunt doloribus consequatur, laudantium
                     odio dolorum laboriosam.
                 </p>
-                <img src="http://placehold.it/1000x500" alt="Graphic" />
+                <img src="1000_500.png" alt="Graphic" />
             </div>
         </div>
     </div>

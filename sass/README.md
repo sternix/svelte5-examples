@@ -29,7 +29,19 @@ export default config;
 ```
 şeklinde düzenlediğimizde, scss dili ile yazılan kısımları vite, sass ile derleyip svelte'ye iletecektir.
 
+# static dosya (asset) kullanımı
 
+Svelte'de static içerik css, resim dosyalarını kök dizindeki static klasörüne kopyalayıp,
+direk ismi ile kullanabiliyoruz
 
+örneğin static/a.png dosyasını 
+```html
+<img src="/a.png">
 
+yada
 
+<img src="a.png">
+
+```
+
+şeklinde kullanabiliyoruz.
