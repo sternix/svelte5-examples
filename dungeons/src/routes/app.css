@@ -1,0 +1,60 @@
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgb(22, 22, 22);
+  font-family: monospace;
+}
+
+*,
+*:after,
+*:before {
+  box-sizing: border-box;
+}
+
+.App {
+    position: relative;
+}
+
+.item {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    background: rgb(22, 22, 22);
+}
+
+.key {
+    color: white;
+    margin-top: 10px;
+}
+
+.header {
+    color: white;
+    text-align: center;
+    position: relative;
+    height: 3em;
+}
+
+.left {
+    position: absolute;
+    text-align: left;
+}
+
+.right {
+    position: absolute;
+    text-align: right;
+    right: 0;
+}
