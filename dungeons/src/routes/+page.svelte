@@ -33,7 +33,7 @@
     });
 
     function changeKey({ key }) {
-        if (durum.key === "r" && durum.status !== STATUS.GAME_OVER) {
+        if (key === "r" && durum.status !== STATUS.GAME_OVER) {
             if (durum.auto) {
                 noauto();
                 durum.auto = false;
@@ -43,7 +43,7 @@
             }
         }
         if (durum.auto) return;
-        if (durum.key === "Enter") {
+        if (key === "Enter") {
             action();
             durum.key = "";
         } else if ("wsadef".includes(key)) durum.key = key;

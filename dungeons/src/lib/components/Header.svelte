@@ -3,8 +3,6 @@
 
     let { score, auto, hp, status } = $props();
 
-    $inspect(score, auto, hp, status);
-
     function formatScore(score) {
         if (String(score).length < 5) {
             return (
